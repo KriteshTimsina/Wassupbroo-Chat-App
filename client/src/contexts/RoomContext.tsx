@@ -1,6 +1,7 @@
 "use client";
 import IRoom from "@/interfaces/interface";
 import { BASE_URL } from "@/utils/constants";
+
 import {
   createContext,
   useState,
@@ -8,7 +9,6 @@ import {
   useEffect,
   ChangeEvent,
 } from "react";
-
 export const RoomContext = createContext<any>(null);
 
 function RoomProvider({ children }: { children: JSX.Element }) {
@@ -16,6 +16,7 @@ function RoomProvider({ children }: { children: JSX.Element }) {
   const [room, setRoom] = useState<IRoom>({
     room: "",
   });
+
   async function getAllRooms() {
     const res = await fetch(BASE_URL + "/rooms");
     const rooms = await res.json();
@@ -28,11 +29,19 @@ function RoomProvider({ children }: { children: JSX.Element }) {
       [name]: value,
     }));
   }
+
   useEffect(() => {
     getAllRooms();
   }, []);
+
   return (
-    <RoomContext.Provider value={{ rooms, room, handleRoomNameChange }}>
+    <RoomContext.Provider
+      value={{
+        rooms,
+        room,
+        handleRoomNameChange,
+      }}
+    >
       {children}
     </RoomContext.Provider>
   );

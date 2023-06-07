@@ -1,13 +1,34 @@
+//imports
 const express = require("express");
 const cors = require("cors");
-const http = require("http");
-
 const app = express();
+const http = require("http").createServer(app);
 
-const server = http.createServer(app);
+//init
 
+//middlewares
 app.use(express.json());
 app.use(cors());
+
+//socket connection
+const socketIO = require("socket.io")(http, {
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+socketIO.on("connection", (socket) => {
+  console.log(`⚡: ${socket.id} user just connected!`);
+
+  //sends the message to all the users on the server
+  socket.on("message", (data) => {
+    console.log(data);
+    socketIO.emit("messageResponse", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("🔥: A user disconnected");
+  });
+});
 
 app.get("/rooms", (req, res) => {
   const rooms = [
@@ -30,6 +51,7 @@ app.get("/rooms", (req, res) => {
 
   res.status(200).json({ room: rooms });
 });
-server.listen(3001, () => {
+
+http.listen(3001, () => {
   console.log("Server listening");
 });

@@ -12,6 +12,9 @@ module.exports = {
           height: "71px",
         },
       },
+      colors: {
+        primary: "#10b981",
+      },
     },
   },
   plugins: [],

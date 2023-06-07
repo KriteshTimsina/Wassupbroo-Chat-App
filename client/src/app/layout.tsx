@@ -1,12 +1,13 @@
+import RoomProvider from "@/contexts/RoomContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Image from "next/image";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Wassup",
+  title: "Chats(0)",
   description: "Whatsapp- but for bros",
-  favicon: "wassup-logo.png",
+  icons: { icon: "wassup-logo.png" },
 };
 
 export default function RootLayout({
@@ -16,17 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} `}>
-        <div className="mt-2 ml-10">
-          <Image
-            src="/wassup-logo.png"
-            alt="Brand Logo"
-            width={80}
-            height={80}
-          />
-        </div>
-        {children}
-      </body>
+      <RoomProvider>
+        <body className={`${inter.className} `}>{children}</body>
+      </RoomProvider>
     </html>
   );
 }

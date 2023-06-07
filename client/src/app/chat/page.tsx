@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
-import Sidebar from "../components/chat/Sidebar";
-import Message from "../components/chat/Message";
+import Message from "../../components/chat/Message";
 
 const page = () => {
   return (
-    <div className=" h-[calc(100vh-4.4rem)] flex">
-      <Sidebar />
+    <div className="w-full">
       <Message />
+      <h2 className="text-4xl"></h2>
     </div>
   );
 };

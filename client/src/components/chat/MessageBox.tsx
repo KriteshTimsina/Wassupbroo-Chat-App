@@ -1,7 +1,7 @@
 "use client";
 
 import { useSocket } from "@/contexts/SocketContext";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   MdKeyboardVoice,
   MdOutlineAttachment,
@@ -10,10 +10,10 @@ import {
 import { TbSend } from "react-icons/tb";
 
 const MessageBox = () => {
-  const { message, handleSetMessage, handleSendMessage } = useSocket();
+  const { message, handleSetMessage, handleSendMessage, ref } = useSocket();
 
   return (
-    <div className="h-[10%] flex items-center gap-3 px-5">
+    <div className="h-[10%] flex items-center gap-3 px-5 ">
       <MdOutlineEmojiEmotions
         size={30}
         title="emoji"
@@ -33,7 +33,6 @@ const MessageBox = () => {
           className="w-full h-10 text-lg border-none rounded-full outline-none indent-2 bg-slate-100 "
           placeholder="Aa"
         />
-        <button type="submit">go</button>
       </form>
       {/* <TbSend title="send" size={30} className="cursor-pointer text-shaded hover:text-black" /> */}
       <MdKeyboardVoice

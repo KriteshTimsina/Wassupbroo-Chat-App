@@ -1,13 +1,16 @@
 "use client";
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext, useEffect, useRef } from "react";
 import socketIO from "socket.io-client";
+import { IMessage } from "@/interfaces/interface";
+
 export const SocketContext = createContext<any>(null);
 
 function SocketProvider({ children }: { children: JSX.Element }) {
-  const [messages, setMessages] = useState<any>([]);
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const [message, setMessage] = useState({
     text: "",
   });
+  const ref = useRef(null);
   const socket = socketIO.connect("http://localhost:3001");
 
   const handleSendMessage = (e: any) => {
@@ -31,8 +34,6 @@ function SocketProvider({ children }: { children: JSX.Element }) {
 
   useEffect(() => {
     socket.on("messageResponse", (data: any) => {
-      console.log(data);
-
       setMessages([...messages, data]);
     });
   }, [socket, messages]);

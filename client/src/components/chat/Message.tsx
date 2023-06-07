@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Head from "./Head";
 import ChatBody from "./ChatBody";
 import MessageBox from "./MessageBox";

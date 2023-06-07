@@ -3,3 +3,8 @@ export default interface IRoom {
   roomId?: string;
   imageUrl?: string;
 }
+export interface IMessage {
+  id: string;
+  socketId: string;
+  text: string;
+}

@@ -10,12 +10,14 @@ import {
   useEffect,
   ChangeEvent,
 } from "react";
+
 export const RoomContext = createContext<any>(null);
 
 function RoomProvider({ children }: { children: JSX.Element }) {
   const [rooms, setRooms] = useState<IRoom[]>([]);
   const [room, setRoom] = useState<IRoom>({
     room: "",
+    username: "",
   });
   const [expandSidebar, setExpandSidebar] = useState<boolean>(false);
   const router = useRouter();
@@ -30,7 +32,6 @@ function RoomProvider({ children }: { children: JSX.Element }) {
 
   function goToChat(e: any) {
     e.preventDefault();
-
     setLoading(true);
     setTimeout(() => {
       if (room.room.trim() !== "") {

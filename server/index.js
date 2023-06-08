@@ -16,11 +16,18 @@ const socketIO = require("socket.io")(http, {
     origin: "http://localhost:3000",
   },
 });
+
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
 
   //sends the message to all the users on the server
+
+  // socketIO.on("join_room", (data) => {
+  //   socket.join(data);
+  //   console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  // });
   socket.on("message", (data) => {
+    console.log(data);
     socketIO.emit("messageResponse", data);
   });
 

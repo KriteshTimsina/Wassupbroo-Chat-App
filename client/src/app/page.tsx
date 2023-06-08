@@ -73,6 +73,20 @@ export default function Home() {
                   placeholder="Enter a room name..."
                 />
               </div>
+              <div className="ml-1">
+                <input
+                  value={room.username}
+                  onChange={handleRoomNameChange}
+                  name="username"
+                  className={`${
+                    error
+                      ? "placeholder:text-red-600 animate-pulse]"
+                      : "placeholder:text-primary"
+                  } border-none outline-none  caret-primary`}
+                  type="text"
+                  placeholder="Enter username..."
+                />
+              </div>
               <div className="p-2 text-lg text-center text-white transition-transform w-fit rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 hover:scale-105">
                 <button type="submit">
                   {loading ? (

@@ -4,22 +4,26 @@ import socketIO from "socket.io-client";
 import { IMessage } from "@/interfaces/interface";
 
 export const SocketContext = createContext<any>(null);
-const socket = socketIO.connect("http://localhost:3001");
 
 function SocketProvider({ children }: { children: JSX.Element }) {
+  const socket = socketIO.connect("http://localhost:3001");
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [message, setMessage] = useState({
     text: "",
   });
 
-  const handleSendMessage = (e: any) => {
+  const handleSendMessage = async (e: any) => {
     console.log(socket);
     e.preventDefault();
     if (message.text.trim()) {
-      socket.emit("message", {
+      await socket.emit("message", {
         text: message.text,
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
       });
     }
     setMessage({ text: "" });
@@ -37,14 +41,20 @@ function SocketProvider({ children }: { children: JSX.Element }) {
       text: "👍🏿",
       id: `${socket.id}${Math.random()}`,
       socketID: socket.id,
+      time:
+        new Date(Date.now()).getHours() +
+        ":" +
+        new Date(Date.now()).getMinutes(),
     });
   }
 
   useEffect(() => {
     socket.on("messageResponse", (data: any) => {
+      console.log("reply" + data);
       setMessages([...messages, data]);
     });
   }, [socket, messages]);
+
   return (
     <SocketContext.Provider
       value={{

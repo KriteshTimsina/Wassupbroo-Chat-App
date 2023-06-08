@@ -18,11 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <SocketProvider>
-        <RoomProvider>
+      <RoomProvider>
+        <SocketProvider>
           <body className={`${inter.className} `}>{children}</body>
-        </RoomProvider>
-      </SocketProvider>
+        </SocketProvider>
+      </RoomProvider>
     </html>
   );
 }

@@ -4,10 +4,9 @@ import { TbHandRock } from "react-icons/tb";
 import { MdOutlineHandshake } from "react-icons/md";
 import { LuHeartHandshake } from "react-icons/lu";
 import { AiOutlineWhatsApp } from "react-icons/ai";
+import { BiCircleThreeQuarter } from "react-icons/bi";
 import Header from "../components/home/Header";
-import Link from "next/link";
 import { useRoom } from "@/contexts/RoomContext";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -17,12 +16,23 @@ export default function Home() {
   //   setImage(URL.createObjectURL(e.target.files![0]));
   // };
 
-  const { handleRoomNameChange, room, setRoom, goToChat } = useRoom();
+  const {
+    handleRoomNameChange,
+    room,
+    setRoom,
+    goToChat,
+    error,
+    loading,
+    setLoading,
+    setError,
+  } = useRoom();
 
   useEffect(() => {
     setRoom({
       room: "",
     });
+    setLoading(false);
+    setError(false);
   }, []);
 
   return (
@@ -54,13 +64,29 @@ export default function Home() {
                   value={room.room}
                   onChange={handleRoomNameChange}
                   name="room"
-                  className="border-none outline-none placeholder:text-primary caret-primary"
+                  className={`${
+                    error
+                      ? "placeholder:text-red-600 animate-pulse]"
+                      : "placeholder:text-primary"
+                  } border-none outline-none  caret-primary`}
                   type="text"
                   placeholder="Enter a room name..."
                 />
               </div>
-              <div className="p-2 text-lg text-center text-white w-fit rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500">
-                <button type="submit">Join Broom-room for bros</button>
+              <div className="p-2 text-lg text-center text-white transition-transform w-fit rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 hover:scale-105">
+                <button type="submit">
+                  {loading ? (
+                    <div className="flex items-center justify-center w-[210px]">
+                      <BiCircleThreeQuarter
+                        className={`${loading && "animate-spin text-white"}`}
+                        size={20}
+                      />
+                      <p>broooo...</p>
+                    </div>
+                  ) : (
+                    <p>Join Broom-room for bros</p>
+                  )}
+                </button>
               </div>
             </form>
           </div>

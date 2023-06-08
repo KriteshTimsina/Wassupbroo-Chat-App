@@ -19,6 +19,9 @@ function RoomProvider({ children }: { children: JSX.Element }) {
   });
   const [expandSidebar, setExpandSidebar] = useState<boolean>(false);
   const router = useRouter();
+  const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
   async function getAllRooms() {
     const res = await fetch(BASE_URL + "/rooms");
     const rooms = await res.json();
@@ -27,9 +30,16 @@ function RoomProvider({ children }: { children: JSX.Element }) {
 
   function goToChat(e: any) {
     e.preventDefault();
-    if (room.room.trim() !== "") {
-      router.push("chat");
-    }
+
+    setLoading(true);
+    setTimeout(() => {
+      if (room.room.trim() !== "") {
+        router.push("chat");
+      } else {
+        setLoading(false);
+        setError(true);
+      }
+    }, 1000);
   }
   function handleRoomNameChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -57,6 +67,10 @@ function RoomProvider({ children }: { children: JSX.Element }) {
         handleSidebarPosition,
         expandSidebar,
         goToChat,
+        error,
+        loading,
+        setLoading,
+        setError,
       }}
     >
       {children}

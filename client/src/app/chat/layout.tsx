@@ -1,7 +1,7 @@
 import Sidebar from "../../components/shared/sidebar/Sidebar";
 
 export const metadata = {
-  title: "Chats",
+  title: "Rooms",
 };
 
 export default function ChatLayout({

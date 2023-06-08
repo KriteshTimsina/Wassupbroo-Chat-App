@@ -13,6 +13,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   });
 
   const handleSendMessage = (e: any) => {
+    console.log(socket);
     e.preventDefault();
     if (message.text.trim()) {
       socket.emit("message", {
@@ -37,10 +38,6 @@ function SocketProvider({ children }: { children: JSX.Element }) {
       id: `${socket.id}${Math.random()}`,
       socketID: socket.id,
     });
-  }
-
-  function leaveRoom() {
-    console.log(socket);
   }
 
   useEffect(() => {

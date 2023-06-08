@@ -2,15 +2,16 @@ import { useRoom } from "@/contexts/RoomContext";
 import React from "react";
 import { BsBell } from "react-icons/bs";
 import { RiDeleteBack2Line } from "react-icons/ri";
-import ChatHead from "../shared/sidebar/ChatHead";
 import Link from "next/link";
-
+import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 const Head = () => {
-  const { room } = useRoom();
+  const { room, handleSidebarPosition } = useRoom();
   return (
-    <div className=" h-[15%] flex items-center px-2 justify-between border-b-[1px] border-[#e4e4e4] shadow-lg">
-      {/* <ChatHead room={room} recentMessage="" /> */}
-      <div className="flex items-center gap-2 cursor-pointer hover:bg-slate-200">
+    <div className=" h-[15%] flex items-center px-2 justify-between border-b-[1px] border-[#e4e4e4] shadow-lg ">
+      <div className="flex items-center gap-2 cursor-pointer">
+        <div className="flex md:hidden">
+          <RxHamburgerMenu size={25} onClick={handleSidebarPosition} />
+        </div>
         <img
           src={"/diwash.jpg"}
           alt={room.roomId}
@@ -24,13 +25,13 @@ const Head = () => {
       <div className="flex items-center gap-4">
         <BsBell
           title="notifications"
-          size={30}
+          size={25}
           className="transition-colors hover:text-yellow-400"
         />
         <Link href="/">
           <RiDeleteBack2Line
             title="leave room"
-            size={30}
+            size={25}
             className="transition-colors hover:text-red-500"
           />
         </Link>

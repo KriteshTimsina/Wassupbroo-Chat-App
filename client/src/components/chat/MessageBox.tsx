@@ -10,7 +10,7 @@ const MessageBox = () => {
     useSocket();
 
   return (
-    <div className="h-[10%] flex items-center gap-3 px-10 ">
+    <div className="h-[10%] flex items-center gap-3 px-2 md:px-10 ">
       <MdOutlineEmojiEmotions
         size={30}
         title="emoji"

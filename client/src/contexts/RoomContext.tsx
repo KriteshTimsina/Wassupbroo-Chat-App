@@ -16,6 +16,7 @@ function RoomProvider({ children }: { children: JSX.Element }) {
   const [room, setRoom] = useState<IRoom>({
     room: "",
   });
+  const [expandSidebar, setExpandSidebar] = useState<boolean>(false);
 
   async function getAllRooms() {
     const res = await fetch(BASE_URL + "/rooms");
@@ -29,6 +30,9 @@ function RoomProvider({ children }: { children: JSX.Element }) {
       [name]: value,
     }));
   }
+  function handleSidebarPosition() {
+    setExpandSidebar(!expandSidebar);
+  }
 
   useEffect(() => {
     getAllRooms();
@@ -41,6 +45,8 @@ function RoomProvider({ children }: { children: JSX.Element }) {
         room,
         handleRoomNameChange,
         setRoom,
+        handleSidebarPosition,
+        expandSidebar,
       }}
     >
       {children}

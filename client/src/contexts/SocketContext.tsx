@@ -2,24 +2,28 @@
 import { createContext, useState, useContext, useEffect, useRef } from "react";
 import socketIO from "socket.io-client";
 import { IMessage } from "@/interfaces/interface";
+import { useRoom } from "./RoomContext";
 
 export const SocketContext = createContext<any>(null);
 
+const socket = socketIO.connect("http://localhost:3001");
+
 function SocketProvider({ children }: { children: JSX.Element }) {
-  const socket = socketIO.connect("http://localhost:3001");
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [message, setMessage] = useState({
     text: "",
   });
+  const { room } = useRoom();
 
-  const handleSendMessage = async (e: any) => {
-    console.log(socket);
+  const handleSendMessage = (e: any) => {
     e.preventDefault();
     if (message.text.trim()) {
-      await socket.emit("message", {
+      socket.emit("message", {
         text: message.text,
         id: `${socket.id}${Math.random()}`,
+        room: room.room,
         socketID: socket.id,
+        username: room.username,
         time:
           new Date(Date.now()).getHours() +
           ":" +

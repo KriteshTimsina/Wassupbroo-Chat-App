@@ -9,4 +9,6 @@ export interface IMessage {
   socketId: string;
   text: string;
   time: string;
+  room: string;
+  username: string;
 }

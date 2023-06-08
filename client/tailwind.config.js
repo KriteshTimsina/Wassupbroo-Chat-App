@@ -17,6 +17,10 @@ module.exports = {
         shaded: "#6b7280",
         secondary: "#3b82f6",
       },
+      keyframes: {
+        "0%": {},
+      },
+      animation: {},
     },
   },
   plugins: [],

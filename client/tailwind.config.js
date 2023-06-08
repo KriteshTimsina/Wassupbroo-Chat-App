@@ -7,20 +7,33 @@ module.exports = {
   ],
   theme: {
     extend: {
-      spacing: {
-        nav: {
-          height: "71px",
-        },
-      },
       colors: {
         primary: "#10b981",
         shaded: "#6b7280",
         secondary: "#3b82f6",
       },
       keyframes: {
-        "0%": {},
+        slide: {
+          "0%": {
+            transform: "translateX(-100%)",
+          },
+          "100%": {
+            transform: "translateX(0%)",
+          },
+        },
+        slideback: {
+          "0%": {
+            transform: "translateX(0%)",
+          },
+          "100%": {
+            transform: "translateX(-100%)",
+          },
+        },
       },
-      animation: {},
+      animation: {
+        slide: "slide 0.5s ease-in-out forwards",
+        slideback: "slideback 0.5s ease-in-out forwards",
+      },
     },
   },
   plugins: [],

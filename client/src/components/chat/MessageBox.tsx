@@ -17,11 +17,14 @@ const MessageBox = () => {
         className="cursor-pointer text-shaded hover:text-black"
       />
 
-      <MdOutlineAttachment
-        size={30}
-        title="attach"
-        className="-rotate-45 cursor-pointer  text-shaded hover:text-black"
-      />
+      <label className="flex flex-col items-center justify-center ">
+        <MdOutlineAttachment
+          size={30}
+          title="attach"
+          className="-rotate-45 cursor-pointer text-shaded hover:text-black"
+        />
+        <input id="dropzone-file" type="file" className="hidden" />
+      </label>
 
       <form
         onSubmit={handleSendMessage}

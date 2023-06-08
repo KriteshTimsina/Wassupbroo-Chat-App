@@ -7,8 +7,8 @@ const ChatBody = () => {
   const { room } = useRoom();
 
   return (
-    <ScrollToBottom className="h-3/4">
-      <div className="flex flex-col gap-5 p-5 ">
+    <ScrollToBottom className=" h-3/4">
+      <div className="flex flex-col gap-5 p-5">
         {messages.map((message: IMessage) => {
           return (
             <div className="w-full ">

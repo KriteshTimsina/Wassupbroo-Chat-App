@@ -54,7 +54,6 @@ function SocketProvider({ children }: { children: JSX.Element }) {
 
   useEffect(() => {
     socket.on("messageResponse", (data: any) => {
-      console.log("reply" + data);
       setMessages([...messages, data]);
     });
   }, [socket, messages]);

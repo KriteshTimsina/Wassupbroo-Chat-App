@@ -9,7 +9,9 @@ const Sidebar = () => {
   return (
     <div
       className={`${
-        expandSidebar ? " w-full flex bg-slate-100/50 " : "w-0 hidden"
+        expandSidebar
+          ? "animate-slide w-full flex bg-slate-100/50 "
+          : "w-0 hidden"
       }  md:flex flex-col justify-start md:w-1/4 h-screen gap-5 p-2 pt-5 rounded-md  bg-slate-100 relative `}
     >
       <div className="">

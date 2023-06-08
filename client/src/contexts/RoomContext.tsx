@@ -1,6 +1,7 @@
 "use client";
 import IRoom from "@/interfaces/interface";
 import { BASE_URL } from "@/utils/constants";
+import { useRouter } from "next/navigation";
 
 import {
   createContext,
@@ -17,11 +18,18 @@ function RoomProvider({ children }: { children: JSX.Element }) {
     room: "",
   });
   const [expandSidebar, setExpandSidebar] = useState<boolean>(false);
-
+  const router = useRouter();
   async function getAllRooms() {
     const res = await fetch(BASE_URL + "/rooms");
     const rooms = await res.json();
     setRooms(rooms.room);
+  }
+
+  function goToChat(e: any) {
+    e.preventDefault();
+    if (room.room.trim() !== "") {
+      router.push("chat");
+    }
   }
   function handleRoomNameChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -30,6 +38,7 @@ function RoomProvider({ children }: { children: JSX.Element }) {
       [name]: value,
     }));
   }
+
   function handleSidebarPosition() {
     setExpandSidebar(!expandSidebar);
   }
@@ -47,6 +56,7 @@ function RoomProvider({ children }: { children: JSX.Element }) {
         setRoom,
         handleSidebarPosition,
         expandSidebar,
+        goToChat,
       }}
     >
       {children}

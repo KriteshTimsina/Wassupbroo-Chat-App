@@ -17,7 +17,7 @@ export default function Home() {
   //   setImage(URL.createObjectURL(e.target.files![0]));
   // };
 
-  const { handleRoomNameChange, room, setRoom } = useRoom();
+  const { handleRoomNameChange, room, setRoom, goToChat } = useRoom();
 
   useEffect(() => {
     setRoom({
@@ -48,7 +48,7 @@ export default function Home() {
               Whatsapp for <span>Bros</span>
             </h1>
 
-            <form action="#" className="flex flex-col gap-3 text-base">
+            <form onSubmit={goToChat} className="flex flex-col gap-3 text-base">
               <div className="ml-1">
                 <input
                   value={room.room}
@@ -60,9 +60,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-2 text-lg text-center text-white w-fit rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500">
-                <Link href="/chat" type="submit">
-                  Join Broom-room for bros
-                </Link>
+                <button type="submit">Join Broom-room for bros</button>
               </div>
             </form>
           </div>

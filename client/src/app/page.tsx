@@ -28,14 +28,14 @@ export default function Home() {
   return (
     <div className="h-screen ">
       <Header />
-      <main className="flex items-center justify-between px-10 ">
-        <div className="flex flex-col">
+      <main className="flex flex-col items-center justify-between px-10 lg:flex-row">
+        <div className="flex flex-col justify-start mt-10 md:mt-0">
           <div className="flex items-center">
-            <h1 className="w-[300px] italic font-semibold text-transparent text-7xl bg-clip-text bg-gradient-to-r from-green-400 via-cyan-900 to-blue-500">
+            <h1 className="italic font-semibold text-transparent w-[290px]  text-5xl md:text-7xl bg-clip-text bg-gradient-to-r from-green-400 via-cyan-900 to-blue-500">
               Wassup
             </h1>
             <Image
-              className="h-[100px] object-cover pointer-events-none "
+              className="h=[80px] sm:h-[110px] w-[110px] sm:w-[200px] object-cover pointer-events-none "
               src="/fist.gif"
               alt="Fist"
               width={200}
@@ -43,7 +43,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex flex-col gap-3 pl-3 text-3xl">
+          <div className="flex flex-col justify-start gap-3 pl-3 text-3xl">
             <h1>
               Whatsapp for <span>Bros</span>
             </h1>

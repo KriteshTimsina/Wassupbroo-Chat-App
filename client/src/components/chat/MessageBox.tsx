@@ -20,7 +20,7 @@ const MessageBox = () => {
       <MdOutlineAttachment
         size={30}
         title="attach"
-        className="-rotate-45 cursor-pointer text-shaded hover:text-black"
+        className="-rotate-45 cursor-pointer  text-shaded hover:text-black"
       />
 
       <form

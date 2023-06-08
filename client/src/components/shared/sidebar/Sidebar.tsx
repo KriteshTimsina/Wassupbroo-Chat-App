@@ -14,7 +14,7 @@ const Sidebar = () => {
         <Link href="/">
           <IoIosArrowRoundBack size={30} className="text-secondary" />
         </Link>
-        <h1 className="text-xl font-bold">Active Brooms 🟢</h1>
+        <h1 className="text-xl font-bold">Active rooms 🟢</h1>
       </div>
       <div className="border-[1px] rounded-full border-shaded">
         <input

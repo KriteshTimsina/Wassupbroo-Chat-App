@@ -6,7 +6,7 @@ import SocketProvider from "@/contexts/SocketContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Chats(0)",
+  title: "Wassup",
   description: "Whatsapp- but for bros",
   icons: { icon: "wassup-logo.png" },
 };

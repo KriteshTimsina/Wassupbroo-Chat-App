@@ -4,14 +4,13 @@ import socketIO from "socket.io-client";
 import { IMessage } from "@/interfaces/interface";
 
 export const SocketContext = createContext<any>(null);
+const socket = socketIO.connect("http://localhost:3001");
 
 function SocketProvider({ children }: { children: JSX.Element }) {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [message, setMessage] = useState({
     text: "",
   });
-  const ref = useRef(null);
-  const socket = socketIO.connect("http://localhost:3001");
 
   const handleSendMessage = (e: any) => {
     e.preventDefault();
@@ -24,12 +23,24 @@ function SocketProvider({ children }: { children: JSX.Element }) {
     }
     setMessage({ text: "" });
   };
+  //onchange on message input
   function handleSetMessage(e: any) {
     const { name, value } = e.target;
     setMessage((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+  }
+  function sendThumpsUp() {
+    socket.emit("message", {
+      text: "👍🏿",
+      id: `${socket.id}${Math.random()}`,
+      socketID: socket.id,
+    });
+  }
+
+  function leaveRoom() {
+    console.log(socket);
   }
 
   useEffect(() => {
@@ -47,6 +58,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
         setMessage,
         handleSetMessage,
         handleSendMessage,
+        sendThumpsUp,
       }}
     >
       {children}

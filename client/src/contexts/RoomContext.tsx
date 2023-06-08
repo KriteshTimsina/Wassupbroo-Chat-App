@@ -40,6 +40,7 @@ function RoomProvider({ children }: { children: JSX.Element }) {
         rooms,
         room,
         handleRoomNameChange,
+        setRoom,
       }}
     >
       {children}

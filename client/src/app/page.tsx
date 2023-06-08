@@ -8,6 +8,7 @@ import Header from "../components/home/Header";
 import Link from "next/link";
 import { useRoom } from "@/contexts/RoomContext";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   // const [image, setImage] = useState<any>();
@@ -16,7 +17,13 @@ export default function Home() {
   //   setImage(URL.createObjectURL(e.target.files![0]));
   // };
 
-  const { handleRoomNameChange, room } = useRoom();
+  const { handleRoomNameChange, room, setRoom } = useRoom();
+
+  useEffect(() => {
+    setRoom({
+      room: "",
+    });
+  }, []);
 
   return (
     <div className="h-screen ">

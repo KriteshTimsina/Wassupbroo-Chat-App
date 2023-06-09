@@ -16,26 +16,24 @@ const ChatBody = () => {
                 {message.username === room.username ? (
                   <div className="flex items-center justify-end w-full gap-2">
                     <div className="flex flex-col">
-                      <h2 className="p-2 bg-[#4c7dff] text-white">
+                      <h2 className="p-2 bg-[#4c7dff] text-white rounded-lg rounded-br-none">
                         {message.text}
                       </h2>
                       <h4 className="text-sm text-shaded">{message.time}</h4>
                     </div>
-                    <img
-                      className="w-10 h-10 rounded-full"
-                      src="/diwash.jpg"
-                      alt={message.id}
-                    />
+                    <div className="flex items-center justify-center w-10 h-10 text-white uppercase rounded-full bg-secondary">
+                      {room.username[0]}
+                    </div>
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
-                    <img
-                      className="w-10 h-10 rounded-full"
-                      src="/diwash.jpg"
-                      alt={message.id}
-                    />
+                    <div className="flex items-center justify-center w-10 h-10 text-white uppercase rounded-full bg-secondary">
+                      {message.username[0]}
+                    </div>
                     <div className="flex flex-col ">
-                      <h2 className="p-2 bg-slate-100">{message.text}</h2>
+                      <h2 className="p-2 rounded-lg rounded-bl-none bg-slate-100">
+                        {message.text}
+                      </h2>
                       <h4 className="text-sm text-shaded">{message.time}</h4>
                     </div>
                   </div>

@@ -2,7 +2,6 @@
 import IRoom from "@/interfaces/interface";
 import { BASE_URL } from "@/utils/constants";
 import { useRouter } from "next/navigation";
-
 import {
   createContext,
   useState,
@@ -30,7 +29,7 @@ function RoomProvider({ children }: { children: JSX.Element }) {
     setRooms(rooms.room);
   }
 
-  function goToChat(e: any) {
+  function goToChat(e: SubmitEvent) {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {

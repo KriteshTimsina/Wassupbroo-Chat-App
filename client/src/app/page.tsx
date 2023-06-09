@@ -7,15 +7,10 @@ import { AiOutlineWhatsApp } from "react-icons/ai";
 import { BiCircleThreeQuarter } from "react-icons/bi";
 import Header from "../components/home/Header";
 import { useRoom } from "@/contexts/RoomContext";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useSocket } from "@/contexts/SocketContext";
 
 export default function Home() {
-  // const [image, setImage] = useState<any>();
-
-  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>): void => {
-  //   setImage(URL.createObjectURL(e.target.files![0]));
-  // };
-
   const {
     handleRoomNameChange,
     room,
@@ -26,7 +21,6 @@ export default function Home() {
     setLoading,
     setError,
   } = useRoom();
-
   useEffect(() => {
     setRoom({
       room: "",

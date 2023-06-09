@@ -6,9 +6,8 @@ import { useRoom } from "./RoomContext";
 import useSound from "use-sound";
 import messageSent from "../../public/sent.mp3";
 
-export const SocketContext = createContext<any>(null);
-
 const socket = socketIO.connect("http://localhost:3001");
+export const SocketContext = createContext<any>(null);
 
 function SocketProvider({ children }: { children: JSX.Element }) {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -51,10 +50,13 @@ function SocketProvider({ children }: { children: JSX.Element }) {
       text: "👍🏿",
       id: `${socket.id}${Math.random()}`,
       socketID: socket.id,
-      time:
-        new Date(Date.now()).getHours() +
-        ":" +
-        new Date(Date.now()).getMinutes(),
+      room: room.room,
+      username: room.username,
+      time: new Date().toLocaleString(navigator.language, {
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h12",
+      }),
     });
   }
 

@@ -3,6 +3,8 @@ import { createContext, useState, useContext, useEffect, useRef } from "react";
 import socketIO from "socket.io-client";
 import { IMessage } from "@/interfaces/interface";
 import { useRoom } from "./RoomContext";
+import useSound from "use-sound";
+import messageSent from "../../public/sent.mp3";
 
 export const SocketContext = createContext<any>(null);
 
@@ -14,9 +16,11 @@ function SocketProvider({ children }: { children: JSX.Element }) {
     text: "",
   });
   const { room } = useRoom();
+  const [playSound] = useSound(messageSent, { volume: 0.8 });
 
   const handleSendMessage = (e: any) => {
     e.preventDefault();
+    playSound();
     if (message.text.trim()) {
       socket.emit("message", {
         text: message.text,
@@ -24,12 +28,14 @@ function SocketProvider({ children }: { children: JSX.Element }) {
         room: room.room,
         socketID: socket.id,
         username: room.username,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: new Date().toLocaleString(navigator.language, {
+          hour: "2-digit",
+          minute: "2-digit",
+          hourCycle: "h12",
+        }),
       });
     }
+
     setMessage({ text: "" });
   };
   //onchange on message input

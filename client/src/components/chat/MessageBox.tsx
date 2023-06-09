@@ -1,10 +1,10 @@
 "use client";
 
 import { useSocket } from "@/contexts/SocketContext";
-
 import { MdOutlineAttachment, MdOutlineEmojiEmotions } from "react-icons/md";
 import { TbSend } from "react-icons/tb";
 import { AiFillLike } from "react-icons/ai";
+
 const MessageBox = () => {
   const { message, handleSetMessage, handleSendMessage, ref, sendThumpsUp } =
     useSocket();

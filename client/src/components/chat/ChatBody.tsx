@@ -1,11 +1,22 @@
 import { useRoom } from "@/contexts/RoomContext";
 import { useSocket } from "@/contexts/SocketContext";
 import { IMessage } from "@/interfaces/interface";
+import {
+  LegacyRef,
+  MutableRefObject,
+  RefObject,
+  useEffect,
+  useRef,
+} from "react";
 
 const ChatBody = () => {
   const { messages } = useSocket();
   const { room } = useRoom();
+  const ref = useRef<RefObject<HTMLDivElement>>(null);
 
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   return (
     <div className="flex flex-col gap-5 p-5 overflow-y-scroll h-3/4">
       {messages.map((message: IMessage) => {
@@ -38,6 +49,7 @@ const ChatBody = () => {
                 </div>
               )}
             </div>
+            <div ref={ref}></div>
           </div>
         );
       })}

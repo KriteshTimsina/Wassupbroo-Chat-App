@@ -8,6 +8,9 @@ const page = () => {
   const { expandSidebar, room } = useRoom();
   const { socket } = useSocket();
 
+  // useEffect(() => {
+  //   socket.emit("join_room", "broo");
+  // }, []);
   return (
     <div className={`${expandSidebar ? "hidden" : "w-full "}`}>
       <Message />

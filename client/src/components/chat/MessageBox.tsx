@@ -23,7 +23,7 @@ const MessageBox = () => {
           title="attach"
           className="-rotate-45 cursor-pointer text-shaded hover:text-black"
         />
-        <input id="dropzone-file" type="file" className="hidden" />
+        <input id="" type="file" className="hidden" />
       </label>
 
       <form

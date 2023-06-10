@@ -1,12 +1,11 @@
 "use client";
 import { createContext, useState, useContext, useEffect, useRef } from "react";
-import socketIO from "socket.io-client";
+import * as socketIO from "socket.io-client";
 import { IMessage } from "@/interfaces/interface";
 import { useRoom } from "./RoomContext";
 import useSound from "use-sound";
 import messageSent from "../../public/sent.mp3";
 
-const socket = socketIO.connect("http://localhost:3001");
 export const SocketContext = createContext<any>(null);
 
 function SocketProvider({ children }: { children: JSX.Element }) {
@@ -16,12 +15,13 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   });
   const { room } = useRoom();
   const [playSound] = useSound(messageSent, { volume: 0.8 });
+  const [socket, setSocket] = useState<socketIO.Socket>();
 
   const handleSendMessage = (e: any) => {
     e.preventDefault();
     playSound();
     if (message.text.trim()) {
-      socket.emit("message", {
+      socket?.emit("message", {
         text: message.text,
         id: `${socket.id}${Math.random()}`,
         room: room.room,
@@ -46,7 +46,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
     }));
   }
   function sendThumpsUp() {
-    socket.emit("message", {
+    socket?.emit("message", {
       text: "👍🏿",
       id: `${socket.id}${Math.random()}`,
       socketID: socket.id,
@@ -61,7 +61,14 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   }
 
   useEffect(() => {
-    socket.on("messageResponse", (data: any) => {
+    const socket = socketIO.connect("http://localhost:3001");
+    setSocket(socket);
+  }, []);
+
+  useEffect(() => {
+    socket?.on("messageResponse", (data: any) => {
+      console.log(data);
+
       setMessages([...messages, data]);
     });
   }, [socket, messages]);

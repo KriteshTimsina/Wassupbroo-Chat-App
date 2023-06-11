@@ -4,7 +4,7 @@ import * as socketIO from "socket.io-client";
 import { IMessage } from "@/interfaces/interface";
 import { useRoom } from "./RoomContext";
 import useSound from "use-sound";
-import messageSent from "../../public/sent.mp3";
+// import messageSent from "../../public/sent.mp3";
 
 export const SocketContext = createContext<any>(null);
 
@@ -14,12 +14,12 @@ function SocketProvider({ children }: { children: JSX.Element }) {
     text: "",
   });
   const { room } = useRoom();
-  const [playSound] = useSound(messageSent, { volume: 0.8 });
+  // const [playSound] = useSound(messageSent, { volume: 0.8 });
   const [socket, setSocket] = useState<socketIO.Socket>();
 
   const handleSendMessage = (e: any) => {
     e.preventDefault();
-    playSound();
+    // playSound();
     if (message.text.trim()) {
       socket?.emit("message", {
         text: message.text,
@@ -47,7 +47,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   }
   function sendThumpsUp() {
     socket?.emit("message", {
-      text: "👍🏿",
+      text: "👍",
       id: `${socket.id}${Math.random()}`,
       socketID: socket.id,
       room: room.room,

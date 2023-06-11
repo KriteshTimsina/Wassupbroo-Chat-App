@@ -12,7 +12,7 @@ import {
 const ChatBody = () => {
   const { messages } = useSocket();
   const { room } = useRoom();
-  const ref = useRef<RefObject<HTMLDivElement>>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });

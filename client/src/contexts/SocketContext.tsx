@@ -4,6 +4,7 @@ import * as socketIO from "socket.io-client";
 import { IMessage } from "@/interfaces/interface";
 import { useRoom } from "./RoomContext";
 import useSound from "use-sound";
+import { useRouter } from "next/navigation";
 // import messageSent from "../../public/sent.mp3";
 
 export const SocketContext = createContext<any>(null);
@@ -14,6 +15,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
     text: "",
   });
   const { room } = useRoom();
+  const router = useRouter();
   // const [playSound] = useSound(messageSent, { volume: 0.8 });
   const [socket, setSocket] = useState<socketIO.Socket>();
 
@@ -34,7 +36,6 @@ function SocketProvider({ children }: { children: JSX.Element }) {
         }),
       });
     }
-
     setMessage({ text: "" });
   };
   //onchange on message input
@@ -61,6 +62,9 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   }
 
   useEffect(() => {
+    if (!room.username) {
+      router.replace("/");
+    }
     const socket = socketIO.connect("http://localhost:3001");
     setSocket(socket);
   }, []);
@@ -68,7 +72,6 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   useEffect(() => {
     socket?.on("messageResponse", (data: any) => {
       console.log(data);
-
       setMessages([...messages, data]);
     });
   }, [socket, messages]);

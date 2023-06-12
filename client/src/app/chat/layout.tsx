@@ -1,3 +1,4 @@
+import SocketProvider from "@/contexts/SocketContext";
 import Sidebar from "../../components/shared/sidebar/Sidebar";
 
 export const metadata = {
@@ -7,12 +8,12 @@ export const metadata = {
 export default function ChatLayout({
   children, // will be a page or nested layout
 }: {
-  children: React.ReactNode;
+  children: React.JSX.Element;
 }) {
   return (
     <section className="flex">
       <Sidebar />
-      {children}
+      <SocketProvider>{children}</SocketProvider>
     </section>
   );
 }

@@ -15,7 +15,6 @@ export const RoomContext = createContext<any>(null);
 function RoomProvider({ children }: { children: JSX.Element }) {
   const [rooms, setRooms] = useState<IRoom[]>([]);
   const [room, setRoom] = useState<IRoom>({
-    room: "",
     username: "",
   });
   const [expandSidebar, setExpandSidebar] = useState<boolean>(false);
@@ -33,7 +32,7 @@ function RoomProvider({ children }: { children: JSX.Element }) {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
-      if (room.room.trim() !== "") {
+      if (room.username!.trim() !== "") {
         router.push("chat");
       } else {
         setLoading(false);

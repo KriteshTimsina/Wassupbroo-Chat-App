@@ -43,7 +43,7 @@ const Form = () => {
           placeholder="Enter username..."
         />
       </div>
-      <div className="p-2 text-lg text-center text-white transition-transform w-fit rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 hover:scale-105">
+      <div className="p-2 text-lg text-center text-white transition-transform rounded-lg w-fit bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500">
         <button type="submit">
           {loading ? (
             <div className="flex items-center justify-center w-[100px]">

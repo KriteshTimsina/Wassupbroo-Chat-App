@@ -5,7 +5,7 @@ import { IMessage } from "@/interfaces/interface";
 import { useRoom } from "./RoomContext";
 import useSound from "use-sound";
 import { useRouter } from "next/navigation";
-// import messageSent from "../../public/sent.mp3";
+import messageSent from "../../public/sent.mp3";
 
 export const SocketContext = createContext<any>(null);
 
@@ -16,12 +16,12 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   });
   const { room } = useRoom();
   const router = useRouter();
-  // const [playSound] = useSound(messageSent, { volume: 0.8 });
+  const [playSound] = useSound(messageSent, { volume: 0.8 });
   const [socket, setSocket] = useState<socketIO.Socket>();
 
   const handleSendMessage = (e: any) => {
     e.preventDefault();
-    // playSound();
+    playSound();
     if (message.text.trim()) {
       socket?.emit("message", {
         text: message.text,

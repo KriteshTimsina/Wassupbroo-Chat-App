@@ -4,10 +4,10 @@ import React from "react";
 
 const ChatHead = ({
   room,
-  recentMessage,
+  activeStatus,
 }: {
   room: IRoom;
-  recentMessage: string;
+  activeStatus: string;
 }) => {
   return (
     <Link
@@ -21,7 +21,7 @@ const ChatHead = ({
       />
       <div className="flex flex-col items-start">
         <h2 className="font-semibold text-secondary">{room.room}</h2>
-        <p className="text-sm text-gray-500">{recentMessage}</p>
+        <p className="text-sm text-gray-500">{activeStatus}</p>
       </div>
     </Link>
   );

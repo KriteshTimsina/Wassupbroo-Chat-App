@@ -33,11 +33,7 @@ const Sidebar = () => {
       </div>
       {rooms &&
         rooms.map((room: IRoom) => (
-          <ChatHead
-            key={room.roomId}
-            room={room}
-            recentMessage="recent message"
-          />
+          <ChatHead key={room.roomId} room={room} activeStatus="0 active" />
         ))}
     </div>
   );

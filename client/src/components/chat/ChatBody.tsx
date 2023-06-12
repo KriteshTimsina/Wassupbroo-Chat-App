@@ -17,6 +17,11 @@ const ChatBody = () => {
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+  if (messages.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-3/4">Start chat.</div>
+    );
+  }
   return (
     <div className="flex flex-col gap-5 p-5 overflow-y-scroll h-3/4">
       {messages.map((message: IMessage) => {

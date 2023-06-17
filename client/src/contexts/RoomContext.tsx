@@ -47,7 +47,6 @@ function RoomProvider({ children }: { children: JSX.Element }) {
   }
 
   useEffect(() => {
-    getAllRooms();
     async function fetchData() {
       const rooms = await getAllRooms();
       setRooms(rooms);

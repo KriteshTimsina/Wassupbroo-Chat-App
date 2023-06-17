@@ -1,7 +1,6 @@
 import RoomProvider from "@/contexts/RoomContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import SocketProvider from "@/contexts/SocketContext";
 
 const inter = Inter({ subsets: ["latin"] });
 

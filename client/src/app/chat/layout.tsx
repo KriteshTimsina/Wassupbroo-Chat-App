@@ -5,10 +5,6 @@ import { useEffect } from "react";
 import { useRoom } from "@/contexts/RoomContext";
 import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title: "Rooms",
-};
-
 export default function ChatLayout({
   children, // will be a page or nested layout
 }: {

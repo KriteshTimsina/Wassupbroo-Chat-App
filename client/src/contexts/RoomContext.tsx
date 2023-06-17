@@ -22,12 +22,6 @@ function RoomProvider({ children }: { children: JSX.Element }) {
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  async function getAllRooms() {
-    const res = await fetch(BASE_URL + "/rooms");
-    const rooms = await res.json();
-    setRooms(rooms.room);
-  }
-
   function goToChat(e: SubmitEvent) {
     e.preventDefault();
     setLoading(true);
@@ -54,6 +48,11 @@ function RoomProvider({ children }: { children: JSX.Element }) {
 
   useEffect(() => {
     getAllRooms();
+    async function fetchData() {
+      const rooms = await getAllRooms();
+      setRooms(rooms);
+    }
+    fetchData();
   }, []);
 
   return (
@@ -79,3 +78,9 @@ function RoomProvider({ children }: { children: JSX.Element }) {
 
 export default RoomProvider;
 export const useRoom = () => useContext(RoomContext);
+
+export async function getAllRooms() {
+  const res = await fetch(BASE_URL + "/rooms");
+  const rooms = await res.json();
+  return rooms;
+}

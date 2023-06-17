@@ -1,12 +1,7 @@
 "use client";
 import React from "react";
 import { useRoom } from "@/contexts/RoomContext";
-import { useEffect, useRef } from "react";
-import { useSocket } from "@/contexts/SocketContext";
-import { TbHandRock } from "react-icons/tb";
-import { MdOutlineHandshake } from "react-icons/md";
-import { LuHeartHandshake } from "react-icons/lu";
-import { AiOutlineWhatsApp } from "react-icons/ai";
+import { useEffect } from "react";
 import { BiCircleThreeQuarter } from "react-icons/bi";
 
 const Form = () => {

@@ -1,13 +1,7 @@
 import { useRoom } from "@/contexts/RoomContext";
 import { useSocket } from "@/contexts/SocketContext";
 import { IMessage } from "@/interfaces/interface";
-import {
-  LegacyRef,
-  MutableRefObject,
-  RefObject,
-  useEffect,
-  useRef,
-} from "react";
+import { useEffect, useRef } from "react";
 
 const ChatBody = () => {
   const { messages } = useSocket();

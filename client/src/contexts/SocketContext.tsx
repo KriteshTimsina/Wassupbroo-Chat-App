@@ -6,6 +6,7 @@ import { useRoom } from "./RoomContext";
 import useSound from "use-sound";
 import { useRouter } from "next/navigation";
 import messageSent from "../../public/sent.mp3";
+import { BASE_URL } from "@/utils/constants";
 
 export const SocketContext = createContext<any>(null);
 
@@ -64,14 +65,14 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   useEffect(() => {
     if (!room.username) {
       router.replace("/");
+      return;
     }
-    const socket = socketIO.connect("http://localhost:3001");
+    const socket = socketIO.connect(BASE_URL);
     setSocket(socket);
   }, []);
 
   useEffect(() => {
     socket?.on("messageResponse", (data: any) => {
-      console.log(data);
       setMessages([...messages, data]);
     });
   }, [socket, messages]);

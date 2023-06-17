@@ -44,7 +44,7 @@ app.get("/rooms", (req, res) => {
     },
   ];
 
-  res.status(200).json({ room: rooms });
+  res.status(200).json(rooms);
 });
 
 http.listen(3001, () => {

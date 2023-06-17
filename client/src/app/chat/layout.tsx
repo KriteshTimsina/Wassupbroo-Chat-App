@@ -1,5 +1,9 @@
+"use client";
 import SocketProvider from "@/contexts/SocketContext";
 import Sidebar from "../../components/shared/sidebar/Sidebar";
+import { useEffect } from "react";
+import { useRoom } from "@/contexts/RoomContext";
+import { useRouter } from "next/navigation";
 
 export const metadata = {
   title: "Rooms",
@@ -10,6 +14,14 @@ export default function ChatLayout({
 }: {
   children: React.JSX.Element;
 }) {
+  const { rooms } = useRoom();
+  const router = useRouter();
+  useEffect(() => {
+    if (!rooms) {
+      router.replace("/");
+      return;
+    }
+  }, []);
   return (
     <section className="flex">
       <Sidebar />

@@ -6,7 +6,7 @@ import { TbSend } from "react-icons/tb";
 import { AiFillLike } from "react-icons/ai";
 
 const MessageBox = () => {
-  const { message, handleSetMessage, handleSendMessage, ref, sendThumpsUp } =
+  const { message, handleSetMessage, handleSendMessage, sendThumpsUp } =
     useSocket();
 
   return (

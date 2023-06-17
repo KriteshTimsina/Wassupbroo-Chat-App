@@ -1,5 +1,6 @@
 export default interface IRoom {
   username?: string;
+  room?: string;
   roomId?: string;
   imageUrl?: string;
 }

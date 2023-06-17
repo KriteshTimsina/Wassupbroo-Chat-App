@@ -8,11 +8,7 @@ import { BiCommentAdd } from "react-icons/bi";
 const Sidebar = () => {
   const { rooms, expandSidebar, handleSidebarPosition } = useRoom();
   const [showJoinRoom, setShowJoinRoom] = useState<boolean>(false);
-  const [roomName, setRoomName] = useState<string>();
 
-  function joinRoom(e: any) {
-    e.preventDefault();
-  }
   return (
     <div
       className={`${
@@ -60,10 +56,7 @@ const Sidebar = () => {
             placeholder="Room name.."
             className="bg-gray-100 text-black border-[1px] border-[#e4e4e4] outline-none p-2 rounded-lg "
           />
-          <button
-            onClick={joinRoom}
-            className="p-2 font-semibold text-white rounded-md bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500"
-          >
+          <button className="p-2 font-semibold text-white rounded-md bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500">
             Join room
           </button>
         </form>

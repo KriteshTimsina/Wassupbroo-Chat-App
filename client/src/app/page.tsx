@@ -39,7 +39,3 @@ export default function Home() {
     </div>
   );
 }
-{
-  /* <input type="file" accept="image/*" onChange={handleFileChange} />
-<Image src={image} alt="image" width={50} height={50} /> */
-}

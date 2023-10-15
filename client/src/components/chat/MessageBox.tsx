@@ -24,7 +24,7 @@ const MessageBox = () => {
   };
 
   return (
-    <div className="h-[10%] flex items-center gap-3 px-2 md:px-10 ">
+    <div className="h-[10%] flex items-center gap-3 px-2 md:px-10 relative ">
       <MdOutlineEmojiEmotions
         size={30}
         title="emoji"
@@ -32,18 +32,13 @@ const MessageBox = () => {
         onClick={handleEmojiPickerVisible}
       />
       {emojiPickerVisible && 
-      <div className="z-10" id="emojiPicker"
-      style={
-        {
-          position: 'absolute',
-          top: '59%',
-          zIndex: 1
-        }
-      }>
+      <div className="absolute bottom-full left-0 mb-2 mr-2 z-10"
+      style={{ maxHeight: "400px", overflowY: "hidden" }}>
         <Picker 
           data={data} 
           onEmojiSelect={handleEmojiSelect}
           onClickOutside={handleEmojiPickerVisible}
+          previewPosition="none"
           theme="light"
         /> 
       </div>}

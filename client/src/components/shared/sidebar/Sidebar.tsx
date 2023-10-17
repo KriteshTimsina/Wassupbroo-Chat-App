@@ -5,6 +5,8 @@ import { useRoom } from "@/contexts/RoomContext";
 import IRoom from "@/interfaces/interface";
 import { RxCross2 } from "react-icons/rx";
 import { BiCommentAdd } from "react-icons/bi";
+import ThemeToggle from "../../theme-provider/ThemeToggle";
+
 const Sidebar = () => {
   const { rooms, expandSidebar, handleSidebarPosition } = useRoom();
   const [showJoinRoom, setShowJoinRoom] = useState<boolean>(false);
@@ -13,11 +15,11 @@ const Sidebar = () => {
     <div
       className={`${
         expandSidebar
-          ? "animate-slide w-full flex bg-slate-100/50 "
+          ? "animate-slide w-full flex dark:bg-slate-900 bg-slate-100/50 "
           : "w-0 hidden"
-      }  md:flex flex-col justify-start md:w-1/4 h-screen gap-5 p-2 pt-5 rounded-md  bg-slate-100 relative `}
+      }  md:flex flex-col justify-start md:w-1/4 h-screen gap-5 p-2 pt-5 rounded-md dark:bg-slate-900  bg-slate-100 relative `}
     >
-      <div className="">
+      <div className="flex justify-between items-center">
         {expandSidebar && (
           <RxCross2
             onClick={handleSidebarPosition}
@@ -26,6 +28,7 @@ const Sidebar = () => {
           />
         )}
         <h1 className="text-xl font-bold">Active rooms 🟢</h1>
+        <ThemeToggle />
       </div>
       <div className="border-[1px] rounded-full border-shaded">
         <input

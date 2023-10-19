@@ -4,6 +4,7 @@ import { useSocket } from "@/contexts/SocketContext";
 import { MdOutlineAttachment, MdOutlineEmojiEmotions } from "react-icons/md";
 import { TbSend } from "react-icons/tb";
 import { AiFillLike } from "react-icons/ai";
+import { useTheme } from 'next-themes'
 
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
@@ -13,6 +14,7 @@ const MessageBox = () => {
   const { message, handleSetMessage, handleSendMessage, sendThumpsUp } =
     useSocket();
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
+  const { resolvedTheme } = useTheme();
 
   const handleEmojiSelect = (emoji: any) => {
     message.text += emoji.native;
@@ -28,7 +30,7 @@ const MessageBox = () => {
       <MdOutlineEmojiEmotions
         size={30}
         title="emoji"
-        className="cursor-pointer text-shaded hover:text-black"
+        className="cursor-pointer text-shaded dark:hover:text-white hover:text-black"
         onClick={handleEmojiPickerVisible}
       />
       {emojiPickerVisible && 
@@ -39,7 +41,7 @@ const MessageBox = () => {
           onEmojiSelect={handleEmojiSelect}
           onClickOutside={handleEmojiPickerVisible}
           previewPosition="none"
-          theme="light"
+          theme={resolvedTheme}
         /> 
       </div>}
 
@@ -47,7 +49,7 @@ const MessageBox = () => {
         <MdOutlineAttachment
           size={30}
           title="attach"
-          className="-rotate-45 cursor-pointer text-shaded hover:text-black"
+          className="-rotate-45 cursor-pointer text-shaded dark:hover:text-white hover:text-black"
         />
         <input id="" type="file" className="hidden" />
       </label>
@@ -61,7 +63,7 @@ const MessageBox = () => {
           onChange={handleSetMessage}
           name="text"
           type="text"
-          className="w-full h-10 text-lg border-none rounded-full outline-none indent-2 bg-slate-100 "
+          className="w-full h-10 text-lg border-none rounded-full outline-none indent-2 bg-slate-100 dark:bg-slate-900"
           id="messageBox"
           placeholder="Aa"
         />

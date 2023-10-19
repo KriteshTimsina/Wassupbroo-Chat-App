@@ -29,11 +29,11 @@ const Form = () => {
           value={room.username}
           onChange={handleRoomNameChange}
           name="username"
-          className={`${
+          className={`focus:border-primary focus:border-[1px] ${
             error
               ? "placeholder:text-red-600 animate-pulse]"
               : "placeholder:text-primary"
-          } border-none outline-none  caret-primary`}
+          } outline-none p-2 rounded-full  caret-primary`}
           type="text"
           placeholder="Enter username..."
         />

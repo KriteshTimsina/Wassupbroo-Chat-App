@@ -28,12 +28,12 @@ export default function Home() {
             <h1>
               Whatsapp for <span>Bros</span>
             </h1>
-
             <Form />
           </div>
         </div>
         <div>
-          <Image src="/bros.gif" alt="Wassup" width={500} height={500} />
+          <Image className="dark:block hidden " src="/darklanding.gif" alt="Wassup" width={500} height={500} />
+          <Image className="block dark:hidden" src="/landing.gif" alt="Wassup" width={500} height={500} />
         </div>
       </main>
     </div>

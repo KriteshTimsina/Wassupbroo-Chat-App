@@ -33,7 +33,7 @@ const Form = () => {
             error
               ? "placeholder:text-red-600 animate-pulse]"
               : "placeholder:text-primary"
-          } outline-none p-2 rounded-full  caret-primary`}
+          } outline dark:outline-none p-2 rounded-full  caret-primary`}
           type="text"
           placeholder="Enter username..."
         />

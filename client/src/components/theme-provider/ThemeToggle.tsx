@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react'
 import {BsFillSunFill,BsMoon} from 'react-icons/bs'
 import { useTheme } from 'next-themes'
 
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+
 function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -19,12 +22,9 @@ function ThemeToggle() {
   return (
     <button
       className="text-2xl text-emerald-400 shadow-sm"
-      onClick={() =>setTheme(theme === 'light' ? 'dark' : 'light')}
+      onClick={() =>setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
     >
-      {theme === 'light'
-      ?<BsMoon />
-      : <BsFillSunFill className='text-yellow-400' />
-  }
+      {resolvedTheme === "light" ? <DarkModeIcon /> : <LightModeIcon />}
     </button>
   )
 }

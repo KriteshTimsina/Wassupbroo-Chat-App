@@ -29,26 +29,24 @@ const Form = () => {
           value={room.username}
           onChange={handleRoomNameChange}
           name="username"
-          className={`focus:border-primary focus:border-[1px] ${
+          className={` focus:outline-primary focus:outline-[1px] ${
             error
               ? "placeholder:text-red-600 animate-pulse]"
               : "placeholder:text-primary"
-          } outline dark:outline-none p-2 rounded-full  caret-primary`}
+          }  dark:outline-none p-2 rounded-full  caret-primary`}
           type="text"
           placeholder="Enter username..."
         />
       </div>
-      <div className="p-2 text-lg text-center text-white transition-transform rounded-lg w-fit bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500">
-        <button type="submit">
+      <div className="flex gap-5 items-center ">
+        <button
+          type="submit"
+          className="rounded-full p-2 text-white flex justify-center items-center w-40 bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500"
+        >
           {loading ? (
-            <div className="flex items-center justify-center w-[100px]">
-              <BiCircleThreeQuarter
-                className={`${loading && "animate-spin text-white"}`}
-                size={20}
-              />
-            </div>
+            <BiCircleThreeQuarter className="animate-spin" color="white" size={20} />
           ) : (
-            <p>Join a chat</p>
+            "Join a chat"
           )}
         </button>
       </div>

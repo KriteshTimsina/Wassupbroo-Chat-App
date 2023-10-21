@@ -80,7 +80,7 @@ const MessageBox = () => {
             <TbSend
               title="send"
               size={30}
-              className="cursor-pointer text-shaded hover:text-black"
+              className="cursor-pointer text-shaded hover:text-black dark:hover:text-white"
             />
           </button>
         )}

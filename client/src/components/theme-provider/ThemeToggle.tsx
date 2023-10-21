@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react'
-import {BsFillSunFill,BsMoon} from 'react-icons/bs'
 import { useTheme } from 'next-themes'
 
 import LightModeIcon from "@mui/icons-material/LightMode";
@@ -8,7 +7,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {

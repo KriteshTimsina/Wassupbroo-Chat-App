@@ -16,7 +16,7 @@ export default function Home() {
               Wassup
             </h1>
             <Image
-              className="h=[80px] sm:h-[110px] w-[110px] sm:w-[200px] object-cover pointer-events-none "
+              className="invisible lg:visible h-[80px] sm:h-[110px] w-[110px] sm:w-[200px] object-cover pointer-events-none "
               src="/fist.gif"
               alt="Fist"
               width={200}
@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <Image className="dark:block hidden " src="/darklanding.gif" alt="Wassup" width={500} height={500} />
+          <Image className="dark:block hidden " src="/landingdark.png" alt="Wassup" width={500} height={500} />
           <Image className="block dark:hidden" src="/landing.gif" alt="Wassup" width={500} height={500} />
         </div>
       </main>

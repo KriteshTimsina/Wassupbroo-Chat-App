@@ -28,7 +28,9 @@ const Sidebar = () => {
           />
         )}
         <h1 className="text-xl font-bold">Active rooms 🟢</h1>
+        <div className="absolute right-10 lg:right-1">
         <ThemeToggle />
+        </div>
       </div>
       <div className="border-[1px] rounded-full border-shaded">
         <input

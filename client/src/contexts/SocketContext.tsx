@@ -53,7 +53,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
       socketID: socket.id,
       room: room.room,
       username: room.username,
-      type: "normal",
+      type: "chat",
       time: new Date().toLocaleString(navigator.language, {
         hour: "2-digit",
         minute: "2-digit",

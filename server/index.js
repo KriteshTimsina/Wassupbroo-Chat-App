@@ -20,8 +20,9 @@ const socketIO = require("socket.io")(http, {
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
 
-  socket.on("user_join_room", (username) => {
-    console.log(`${username} joined the room.`);
+  socket.on("user_join_room", (data) => {
+    console.log(`${data.username} joined the room.`);
+    socketIO.emit("joinMessage", data);
   });
   
   socket.on("join_room", (roomId) => {

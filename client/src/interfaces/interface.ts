@@ -11,4 +11,5 @@ export interface IMessage {
   time: string;
   room: string;
   username: string;
+  type: string;
 }

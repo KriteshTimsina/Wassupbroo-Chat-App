@@ -30,7 +30,18 @@ function RoomProvider({ children }: { children: JSX.Element }) {
     setTimeout(() => {
       if (room.username!.trim() !== "") {
         router.push("chat");
-        socket?.emit("user_join_room", room.username);
+        socket?.emit("user_join_room", {
+          text: "",
+          id: `${room.room}${Math.random()}`,
+          username: room.username,
+          room: room.room,
+          type: "join",
+          time: new Date().toLocaleString(navigator.language, {
+            hour: "2-digit",
+            minute: "2-digit",
+            hourCycle: "h12",
+          }),
+        });
       } else {
         setLoading(false);
         setError(true);

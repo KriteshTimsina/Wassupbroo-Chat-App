@@ -53,6 +53,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
       socketID: socket.id,
       room: room.room,
       username: room.username,
+      type: "chat",
       time: new Date().toLocaleString(navigator.language, {
         hour: "2-digit",
         minute: "2-digit",
@@ -73,6 +74,13 @@ function SocketProvider({ children }: { children: JSX.Element }) {
   useEffect(() => {
     socket?.on("messageResponse", (data: any) => {
       setMessages([...messages, data]);
+    });
+  }, [socket, messages]);
+
+  useEffect(() => {
+    socket?.on("joinMessage", (data: any) => {
+      const joinMessage = { ...data, socketId: socket.id };
+      setMessages([...messages, joinMessage]);
     });
   }, [socket, messages]);
 

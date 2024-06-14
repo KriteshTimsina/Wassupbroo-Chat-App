@@ -62,6 +62,24 @@ function SocketProvider({ children }: { children: JSX.Element }) {
     });
   }
 
+  function sendImage(url: any){
+    playSound();
+      socket?.emit("message", {
+        text: url,
+        id: `${socket.id}${Math.random()}`,
+        room: room.room,
+        socketID: socket.id,
+        username: room.username,
+        type: 'image',
+        time: new Date().toLocaleString(navigator.language, {
+          hour: "2-digit",
+          minute: "2-digit",
+          hourCycle: "h12",
+        }),
+      });
+   
+  }
+
   useEffect(() => {
     if (!room.username) {
       router.replace("/");
@@ -95,6 +113,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
         handleSetMessage,
         handleSendMessage,
         sendThumpsUp,
+        sendImage,
       }}
     >
       {children}

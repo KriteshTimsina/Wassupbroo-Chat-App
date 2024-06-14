@@ -11,7 +11,7 @@ import Picker from '@emoji-mart/react'
 import { useState } from "react";
 
 const MessageBox = () => {
-  const { message, handleSetMessage, handleSendMessage, sendThumpsUp } =
+  const { message, handleSetMessage, handleSendMessage, sendThumpsUp, sendImage } =
     useSocket();
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
   const { resolvedTheme } = useTheme();
@@ -51,7 +51,16 @@ const MessageBox = () => {
           title="attach"
           className="-rotate-45 cursor-pointer text-shaded dark:hover:text-white hover:text-black"
         />
-        <input id="" type="file" className="hidden" />
+        <input id="file" name="file" type="file" className="hidden"  onChange={(e:any) =>{
+           const file = e.target.files[0];
+           if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              sendImage(reader.result)
+            };
+            reader.readAsDataURL(file);
+          }
+          }}/>
       </label>
 
       <form

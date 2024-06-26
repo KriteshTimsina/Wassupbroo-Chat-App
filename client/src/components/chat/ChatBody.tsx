@@ -27,31 +27,60 @@ const ChatBody = () => {
                 <p className="flex items-center justify-center w-full">{message.username} has joined the room.</p>
               ) : (
                 <>
-                  {message.username === room.username ? (
-                    <div className="flex items-center justify-end w-full gap-2">
-                      <div className="flex flex-col">
-                        <h2 className="p-2 bg-[#4c7dff] text-white rounded-lg rounded-br-none">
-                          {message.text}
-                        </h2>
-                        <h4 className="text-sm text-shaded">{message.time}</h4>
+                  {message.type === "image" ?
+                    message.username === room.username ? (
+                      <div className="flex items-center justify-end w-full gap-2">
+                        <div className="flex flex-col" style={{maxWidth: '250px'}}>
+                        <img
+                            src={message.text}
+                            max-width='46px'
+                            height='32px'
+                          />
+                          <h4 className="text-sm text-shaded">{message.time}</h4>
+                        </div>
+                        <div className="flex items-center justify-center w-10 h-10 text-white uppercase rounded-full bg-secondary">
+                          {room.username ? room.username[0] : "NN"}
+                        </div>
                       </div>
-                      <div className="flex items-center justify-center w-10 h-10 text-white uppercase rounded-full bg-secondary">
-                        {room.username ? room.username[0] : "NN"}
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-center w-10 h-10 text-white uppercase rounded-full bg-secondary">
+                          {message.username ? message.username[0] : "NN"}
+                        </div>
+                        <div className="flex flex-col" style={{maxWidth: '250px'}}>
+                        <img
+                            src={message.text}
+                            max-width='46px'
+                            height='32px'
+                          />
+                          <h4 className="text-sm text-shaded">{message.time}</h4>
+                        </div>
+                      </div>)
+                    : message.username === room.username ? (
+                      <div className="flex items-center justify-end w-full gap-2">
+                        <div className="flex flex-col">
+                          <h2 className="p-2 bg-[#4c7dff] text-white rounded-lg rounded-br-none">
+                            {message.text}
+                          </h2>
+                          <h4 className="text-sm text-shaded">{message.time}</h4>
+                        </div>
+                        <div className="flex items-center justify-center w-10 h-10 text-white uppercase rounded-full bg-secondary">
+                          {room.username ? room.username[0] : "NN"}
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center justify-center w-10 h-10 text-white uppercase rounded-full bg-secondary">
-                        {message.username ? message.username[0] : "NN"}
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-center w-10 h-10 text-white uppercase rounded-full bg-secondary">
+                          {message.username ? message.username[0] : "NN"}
+                        </div>
+                        <div className="flex flex-col ">
+                          <h2 className="p-2 rounded-lg rounded-bl-none bg-slate-100">
+                            {message.text}
+                          </h2>
+                          <h4 className="text-sm text-shaded">{message.time}</h4>
+                        </div>
                       </div>
-                      <div className="flex flex-col ">
-                        <h2 className="p-2 rounded-lg rounded-bl-none bg-slate-100">
-                          {message.text}
-                        </h2>
-                        <h4 className="text-sm text-shaded">{message.time}</h4>
-                      </div>
-                    </div>
-                  )}
+                    )}
                 </>
               )}
             </div>

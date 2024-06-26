@@ -49,7 +49,7 @@ export default function Home() {
           />
         </div>
       </main>
-      <section className="absolute right-0 left-0 -bottom-10 -z-10">
+      <section className="absolute right-0 bottom-0 left-0 -z-10">
         <Layers />
       </section>
     </div>

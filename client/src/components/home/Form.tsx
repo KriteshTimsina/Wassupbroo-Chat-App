@@ -3,6 +3,7 @@ import React from "react";
 import { useRoom } from "@/contexts/RoomContext";
 import { useEffect } from "react";
 import { BiCircleThreeQuarter } from "react-icons/bi";
+import Button from "../shared/Button";
 
 const Form = () => {
   const {
@@ -38,17 +39,19 @@ const Form = () => {
           placeholder="Enter username..."
         />
       </div>
-      <div className="flex gap-5 items-center ">
-        <button
+      <div className="flex gap-5 items-center">
+        {/* <button
           type="submit"
-          className="rounded-full p-2 text-white flex justify-center items-center w-40 bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500"
+          className="flex justify-center items-center p-2 w-40 text-white bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 rounded-full"
         >
           {loading ? (
             <BiCircleThreeQuarter className="animate-spin" color="white" size={20} />
           ) : (
             "Join a chat"
           )}
-        </button>
+        </button> */}
+
+        <Button>{loading ? "Joining..." : "Join a chat"}</Button>
       </div>
     </form>
   );

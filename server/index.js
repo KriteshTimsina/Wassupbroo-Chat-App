@@ -21,17 +21,18 @@ socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
 
   socket.on("user_join_room", (data) => {
+    console.log("data", JSON.stringify(data, null, 2));
     console.log(`${data.username} joined the room.`);
     socketIO.emit("joinMessage", data);
   });
-  
+
   socket.on("join_room", (roomId) => {
     socket.join(roomId);
     console.log(`User with ID: ${socket.id} joined room: ${roomId}`);
   });
 
   socket.on("message", (data) => {
-    console.log(data);
+    console.log(data, "HI");
     socketIO.emit("messageResponse", data);
   });
 

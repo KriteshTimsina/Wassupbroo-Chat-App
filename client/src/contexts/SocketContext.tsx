@@ -29,6 +29,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
         room: room.room,
         socketID: socket.id,
         username: room.username,
+        type: "chat",
         time: new Date().toLocaleString(navigator.language, {
           hour: "2-digit",
           minute: "2-digit",
@@ -47,6 +48,7 @@ function SocketProvider({ children }: { children: JSX.Element }) {
     }));
   }
   function sendThumpsUp() {
+    playSound();
     socket?.emit("message", {
       text: "👍",
       id: `${socket.id}${Math.random()}`,
@@ -62,22 +64,26 @@ function SocketProvider({ children }: { children: JSX.Element }) {
     });
   }
 
-  function sendImage(url: any){
+  function sendImage(url: any) {
+    console.log(
+      "*******START********",
+      JSON.stringify(url, null, 2),
+      "********URL*********"
+    );
     playSound();
-      socket?.emit("message", {
-        text: url,
-        id: `${socket.id}${Math.random()}`,
-        room: room.room,
-        socketID: socket.id,
-        username: room.username,
-        type: 'image',
-        time: new Date().toLocaleString(navigator.language, {
-          hour: "2-digit",
-          minute: "2-digit",
-          hourCycle: "h12",
-        }),
-      });
-   
+    socket?.emit("message", {
+      text: url,
+      id: `${socket.id}${Math.random()}`,
+      room: room.room,
+      socketID: socket.id,
+      username: room.username,
+      type: "image",
+      time: new Date().toLocaleString(navigator.language, {
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h12",
+      }),
+    });
   }
 
   useEffect(() => {
